@@ -85,5 +85,8 @@ This is the place for you to write reflections:
 ### Mandatory (Subscriber) Reflections
 
 #### Reflection Subscriber-1
+1. RwLock<Vec<Notification>> diperlukan karena data notifikasi digunakan bersama oleh banyak request atau thread. Dalam pola seperti ini, operasi yang paling sering terjadi biasanya adalah membaca daftar notifikasi, sedangkan proses menambah data baru tidak terlalu sering dilakukan.
+
+2. Rust tidak mengizinkan mutasi bebas pada static seperti yang sering ditemui di Java karena bahasa ini menempatkan memory safety sebagai prioritas utama. Rust berusaha mencegah data race sejak tahap compile-time, sehingga penggunaan state global yang dapat berubah harus ditangani dengan sangat hati-hati.
 
 #### Reflection Subscriber-2
