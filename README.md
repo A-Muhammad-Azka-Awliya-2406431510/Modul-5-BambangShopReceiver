@@ -90,3 +90,8 @@ This is the place for you to write reflections:
 2. Rust tidak mengizinkan mutasi bebas pada static seperti yang sering ditemui di Java karena bahasa ini menempatkan memory safety sebagai prioritas utama. Rust berusaha mencegah data race sejak tahap compile-time, sehingga penggunaan state global yang dapat berubah harus ditangani dengan sangat hati-hati.
 
 #### Reflection Subscriber-2
+1. Ya, saya juga mengeksplorasi bagian di luar langkah utama tutorial, terutama src/lib.rs. Dari bagian itu, saya memahami bahwa konfigurasi aplikasi dipusatkan melalui AppConfig dan Figment dengan prefix environment variable APP_. Pendekatan ini membuat endpoint publisher dan receiver dapat diubah tanpa perlu memodifikasi kode pada service.
+
+2. Observer pattern memudahkan penambahan subscriber karena Main app tidak perlu mengetahui detail implementasi dari setiap receiver. Aplikasi cukup menyimpan daftar subscriber berdasarkan product_type, lalu mengirimkan notifikasi ke semua subscriber yang relevan saat event terjadi.
+
+3. Saya juga mencoba pengujian manual menggunakan Postman dan curl untuk alur subscribe, receive, dan list notifikasi. Pengujian ini membantu memastikan bahwa route, method HTTP, dan payload sudah konsisten. Selain itu, cara ini juga memudahkan reproduksi bug, misalnya ketika response kosong karena endpoint yang dipanggil tidak sesuai dengan method yang diharapkan.
